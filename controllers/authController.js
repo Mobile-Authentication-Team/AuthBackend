@@ -29,9 +29,10 @@ exports.loginUser = async (req, res) => {
                 const token = jwt.sign({
                     userMail:user.userMail
                 },secureKey.secret,{expiresIn:'10m'})
-                res.send("Auth Success "+token);A
+                res.send({"mesaj":"Auth Success",
+                          "token":token});
             } else {
-                res.send("Wrong username or password1.");
+                res.send({"mesaj":"Wrong username or password1."});
             }
         } else {
             res.send("Wrong username or password2.");
