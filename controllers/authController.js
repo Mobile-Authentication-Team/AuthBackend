@@ -30,7 +30,11 @@ exports.loginUser = async (req, res) => {
                     userMail:user.userMail
                 },secureKey.secret,{expiresIn:'10m'})
                 res.send({"mesaj":"Auth Success",
-                          "token":token});
+                          "token":token,
+                          "user":{
+                            "userName":user.userName,
+                            "userMail":user.userMail
+                          }});
             } else {
                 res.send({"mesaj":"Wrong username or password1."});
             }
