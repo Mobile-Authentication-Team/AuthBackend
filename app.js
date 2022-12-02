@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 
 const AuthRoute = require('./routes/authRoute');
 
-const mongoConfig = require('./mongo.config')
+const mongoConfig = require('./app.config')
 const app = express();
 
 mongoose.connect(mongoConfig.connectionString).then(() => {
