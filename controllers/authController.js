@@ -81,9 +81,11 @@ exports.resetPass = async (req, res) => {
                   console.log('Email sent: ' + info.response);
                 }
               });
-            res.send({ "mesaj":"Şifre değiştirildi"});
+            res.send({ "baslik":"Başarılı!",
+                        "mesaj":`Şifre sıfırlama işlemine devam etmek için lütfen ${user.userMail} adresini kontrol edin.`});
         } else {
-            res.send({ "mesaj": "Kayıtlı mail yok." });
+            res.send({ "baslik":"Başarılı!",
+                        "mesaj": "Kayıtlı mail yok." });
         }
     } catch (error) {
         console.log(error);
