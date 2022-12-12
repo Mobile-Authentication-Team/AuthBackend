@@ -13,8 +13,16 @@ var transporter = nodemailer.createTransport({
 
 exports.createUser = async (req, res) => {
     try {
-        const user = await User.create(req.body);
+        console.log(req.body);
+        //Kullanıcının zaten var olup olmadığını kontrol edin
+        const userExist = await User.findOne({userMail:req.body.userMail})
+        if (userExist) {
+            res.send({ "title":"Başarısız!",
+                       "message": `Kullanıcı, ${userExist.userMail} adresi ile zaten var!` });
+        }
+        const user = await User.create(req.body);       
         res.status(201).json({
+            title:"Başarılı!",message: 'Kullanıcı başarıyla oluşturuldu!',
             status: 'success',
             user
         });
