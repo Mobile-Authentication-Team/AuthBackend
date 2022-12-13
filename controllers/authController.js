@@ -42,6 +42,7 @@ exports.createUser = async (req, res) => {
 
 exports.loginUser = async (req, res) => {
     try {
+        console.log(req.body);
         const user = await User.findOne({ userMail: req.body.userMail });
         if (user) {
             const cmp = await bcrypt.compare(req.body.userPassword, user.userPassword);
@@ -103,7 +104,7 @@ exports.resetPass = async (req, res) => {
             });
         } else {
             res.send({
-                "baslik": "Başarılı!",
+                "baslik": "Başarısız!",
                 "mesaj": "Kayıtlı mail yok."
             });
         }
@@ -156,7 +157,7 @@ exports.changePassword = async (req, res) => {
 }
 
 /* 
-Bu JWToken testi için yazılmış bir fonksiyon.3,0
+Bu JWToken testi için yazılmış bir fonksiyon.
 */
 exports.test = async (req, res) => {
     res.status(201).send({ message: req.userData.userMail + " - AuthComplate" })
